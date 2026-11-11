@@ -1,0 +1,15 @@
+# Projet  : Architecture Services & Training
+# Auteur  : OUNIADON HAIROULAH (ID: 411030513)
+
+# Identifiants de base de données : ne jamais publier
+config/config.php
+
+# Fichiers vidéo sources non compressés (seules les versions web sont versionnées)
+assets/videos/source/
+
+# Fichiers de test et système
+test.php
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
