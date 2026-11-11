@@ -1,0 +1,286 @@
+/* =====================================================================
+   Projet  : Architecture & Engineering Services
+   Auteur  : OUNIADON HAIROULAH (ID: 411030513)
+   Fichier : assets/css/layout.css
+   Rôle    : Mise en page globale — conteneur, sections, en-tête et
+             navigation, pied de page. Flexbox pour les alignements sur
+             un axe, Grid pour les grilles en 2 dimensions.
+   ===================================================================== */
+
+/* ---------- 1. Conteneur et sections ---------- */
+.container {
+    width: min(100% - 2rem, var(--container));   /* 1rem de marge de chaque côté sur mobile */
+    margin-inline: auto;
+}
+
+.section {
+    padding-block: var(--space-xl);
+}
+
+.section--alt {
+    background-color: var(--clr-surface);
+}
+
+.section-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.section-head--center {
+    align-items: center;
+    text-align: center;
+}
+
+.section-head--center p {
+    margin-inline: auto;
+}
+
+/* En-tête de section avec lien à droite (desktop) */
+.section-head--split {
+    gap: var(--space-md);
+}
+
+/* ---------- 2. En-tête du site ---------- */
+.site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 100;
+    height: var(--header-h);
+    transition: background-color 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+    border-bottom: 1px solid transparent;
+}
+
+/* Classe ajoutée par JavaScript au défilement */
+.site-header.is-scrolled,
+.site-header.is-solid {
+    background-color: rgba(10, 11, 13, 0.82);
+    backdrop-filter: blur(14px);
+    border-color: var(--clr-line);
+}
+
+.site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.logo__name {
+    font-family: var(--ff-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.logo__tag {
+    margin-top: 0.3rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--clr-gold);
+}
+
+/* ---------- 3. Navigation (mobile d'abord : menu plein écran) ---------- */
+.nav-toggle {
+    position: relative;
+    z-index: 110;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+}
+
+.nav-toggle__bar {
+    width: 100%;
+    height: 2px;
+    background: var(--clr-text);
+    transition: transform 0.35s var(--ease), opacity 0.35s;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.site-nav {
+    position: fixed;
+    inset: 0;
+    z-index: 105;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 11, 13, 0.97);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s var(--ease), visibility 0.4s;
+}
+
+.site-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.site-nav__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.site-nav__link {
+    font-family: var(--ff-display);
+    font-size: 2rem;
+    transition: color 0.3s;
+}
+
+.site-nav__link:hover,
+.site-nav__link[aria-current="page"] {
+    color: var(--clr-gold);
+}
+
+.site-nav__cta {
+    margin-top: var(--space-sm);
+}
+
+/* Empêche le défilement de la page quand le menu mobile est ouvert */
+body.nav-open {
+    overflow: hidden;
+}
+
+/* ---------- 4. Pied de page ---------- */
+.site-footer {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-md);
+    border-top: 1px solid var(--clr-line);
+    background: var(--clr-surface);
+}
+
+.site-footer__grid {
+    display: grid;
+    gap: var(--space-lg);
+}
+
+.site-footer h3 {
+    margin-bottom: var(--space-sm);
+    font-family: var(--ff-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clr-gold);
+}
+
+.site-footer ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--clr-muted);
+}
+
+.site-footer a:hover {
+    color: var(--clr-gold-lt);
+}
+
+.site-footer__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--clr-line);
+    font-size: var(--fs-sm);
+    color: var(--clr-muted);
+}
+
+/* =====================================================================
+   Tablette : ≥ 768px
+   ===================================================================== */
+@media (min-width: 768px) {
+    .section-head--split {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    .site-footer__grid {
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    .site-footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* =====================================================================
+   Desktop : ≥ 1024px — la navigation devient horizontale
+   ===================================================================== */
+@media (min-width: 1024px) {
+    .nav-toggle {
+        display: none;
+    }
+
+    .site-nav {
+        position: static;
+        background: none;
+        backdrop-filter: none;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .site-nav__list {
+        flex-direction: row;
+        gap: 2.2rem;
+    }
+
+    .site-nav__link {
+        position: relative;
+        font-family: var(--ff-body);
+        font-size: 0.92rem;
+        font-weight: 500;
+    }
+
+    /* Soulignement doré animé */
+    .site-nav__link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 1px;
+        background: var(--clr-gold);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s var(--ease);
+    }
+
+    .site-nav__link:hover::after,
+    .site-nav__link[aria-current="page"]::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+
+    .site-nav__cta {
+        margin-top: 0;
+        min-height: 42px;
+        padding: 0.6rem 1.3rem;
+    }
+}

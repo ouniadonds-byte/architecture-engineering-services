@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!--
+    Projet  : Architecture & Engineering Services
+    Auteur  : OUNIADON HAIROULAH (ID: 411030513)
+    Fichier : portfolio.html
+    Rôle    : Portfolio interactif — filtres par catégorie et lightbox
+              (<dialog>), pilotés par délégation d'événements (portfolio.js).
+-->
+<html lang="fr" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio : villas, intérieurs, projets urbains et études structurelles réalisés par OUNIADON Architecture & Ingénierie.">
+    <meta name="author" content="OUNIADON Hairoulah">
+    <meta name="theme-color" content="#0a0b0d">
+    <title>Portfolio · OUNIADON Architecture &amp; Ingénierie</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap">
+
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/portfolio.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
+
+    <!-- ================= EN-TÊTE ================= -->
+    <header class="site-header" id="site-header">
+        <div class="container site-header__inner">
+            <a href="index.html" class="logo" aria-label="OUNIADON, retour à l'accueil">
+                <span class="logo__name">OUNIADON</span>
+                <span class="logo__tag">Architecture &amp; Ingénierie</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Ouvrir le menu">
+                <span class="nav-toggle__bar"></span>
+                <span class="nav-toggle__bar"></span>
+                <span class="nav-toggle__bar"></span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+                <ul class="site-nav__list" role="list">
+                    <li><a class="site-nav__link" href="index.html">Accueil</a></li>
+                    <li><a class="site-nav__link" href="index.html#services">Services</a></li>
+                    <li><a class="site-nav__link" href="portfolio.html" aria-current="page">Portfolio</a></li>
+                    <li><a class="site-nav__link" href="index.html#plans">Plans</a></li>
+                    <li><a class="site-nav__link" href="index.html#formations">Formations</a></li>
+                    <li><a class="btn btn--primary site-nav__cta" href="contact.php">Démarrer un projet</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- ================= EN-TÊTE DE PAGE ================= -->
+        <section class="page-hero" aria-labelledby="page-title">
+            <img class="page-hero__bg" src="assets/images/portfolio/maison-crepuscule.webp" alt="" width="1400" height="933">
+            <div class="container page-hero__content">
+                <span class="eyebrow">Portfolio</span>
+                <h1 id="page-title">Des espaces qui <em class="accent">racontent</em> une histoire</h1>
+                <p class="lead">Villas, intérieurs, projets urbains et chantiers : une sélection de réalisations et de rendus.</p>
+            </div>
+        </section>
+
+        <!-- ================= GALERIE ================= -->
+        <section class="section" style="padding-top: var(--space-lg)" aria-label="Galerie de projets">
+            <div class="container">
+                <!-- Un seul écouteur sur ce conteneur gère tous les boutons (délégation d'événements) -->
+                <div class="filters" id="filters" role="toolbar" aria-label="Filtrer les projets">
+                    <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">Tout</button>
+                    <button class="filter-btn" type="button" data-filter="residentiel" aria-pressed="false">Résidentiel</button>
+                    <button class="filter-btn" type="button" data-filter="interieur" aria-pressed="false">Intérieur</button>
+                    <button class="filter-btn" type="button" data-filter="urbain" aria-pressed="false">Urbain &amp; tertiaire</button>
+                    <button class="filter-btn" type="button" data-filter="structure" aria-pressed="false">Structure &amp; chantier</button>
+                </div>
+
+                <p class="visually-hidden" id="filter-status" role="status" aria-live="polite"></p>
+
+                <ul class="portfolio-grid" id="portfolio-grid" role="list">
+                    <li class="portfolio-item is-wide is-tall" data-category="residentiel">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/villa-azur.webp"
+                                data-title="Villa Azur" data-desc="Villa contemporaine aux volumes blancs, piscine à débordement et larges baies vitrées.">
+                            <img src="assets/images/portfolio/villa-azur.webp" alt="Villa contemporaine blanche avec piscine" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Résidentiel</span><strong>Villa Azur</strong></span>
+                        </button>
+                    </li>
+                    <li class="portfolio-item" data-category="interieur">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/salon-lumiere.webp"
+                                data-title="Salon Lumière" data-desc="Séjour ouvert, double hauteur et lumière naturelle maîtrisée.">
+                            <img src="assets/images/portfolio/salon-lumiere.webp" alt="Salon contemporain lumineux" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Intérieur</span><strong>Salon Lumière</strong></span>
+                        </button>
+                    </li>
+                    <li class="portfolio-item" data-category="urbain">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/centre-culturel.webp"
+                                data-title="Centre culturel" data-desc="Architecture sculpturale en verre et métal, géométrie facettée.">
+                            <img src="assets/images/portfolio/centre-culturel.webp" alt="Bâtiment culturel aux formes géométriques en verre" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Urbain &amp; tertiaire</span><strong>Centre culturel</strong></span>
+                        </button>
+                    </li>
+                    <li class="portfolio-item is-tall" data-category="residentiel">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/maison-crepuscule.webp"
+                                data-title="Maison Crépuscule" data-desc="Maison à ossature mixte, mise en lumière au coucher du soleil.">
+                            <img src="assets/images/portfolio/maison-crepuscule.webp" alt="Maison moderne éclairée au crépuscule" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Résidentiel</span><strong>Maison Crépuscule</strong></span>
+                        </button>
+                    </li>
+                    <li class="portfolio-item" data-category="structure">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/chantier-ferraillage.webp"
+                                data-title="Ferraillage de dalle" data-desc="Suivi de chantier : contrôle du ferraillage conformément à la note de calcul.">
+                            <img src="assets/images/portfolio/chantier-ferraillage.webp" alt="Ouvriers posant le ferraillage d'une dalle" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Structure &amp; chantier</span><strong>Ferraillage de dalle</strong></span>
+                        </button>
+                    </li>
+                    <li class="portfolio-item" data-category="residentiel">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/villa-horizon.webp"
+                                data-title="Villa Horizon" data-desc="Villa R+1 en porte-à-faux, terrasse panoramique et piscine.">
+                            <img src="assets/images/portfolio/villa-horizon.webp" alt="Villa moderne à étage avec piscine" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Résidentiel</span><strong>Villa Horizon</strong></span>
+                        </button>
+                    </li>
+                    <li class="portfolio-item is-wide" data-category="interieur">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/suite-parentale.webp"
+                                data-title="Suite parentale" data-desc="Chambre aux tons chauds, luminaires sculpturaux et textures douces.">
+                            <img src="assets/images/portfolio/suite-parentale.webp" alt="Chambre élégante aux tons sombres" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Intérieur</span><strong>Suite parentale</strong></span>
+                        </button>
+                    </li>
+                    <li class="portfolio-item" data-category="urbain">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/tours-affaires.webp"
+                                data-title="Quartier d'affaires" data-desc="Étude de façades vitrées pour un ensemble de tours de bureaux.">
+                            <img src="assets/images/portfolio/tours-affaires.webp" alt="Tours de bureaux vues en contre-plongée" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Urbain &amp; tertiaire</span><strong>Quartier d'affaires</strong></span>
+                        </button>
+                    </li>
+                    <li class="portfolio-item" data-category="residentiel">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/residence-lagon.webp"
+                                data-title="Résidence Lagon" data-desc="Résidence balnéaire aux lignes épurées, toit-terrasse accessible.">
+                            <img src="assets/images/portfolio/residence-lagon.webp" alt="Résidence blanche avec grande piscine" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Résidentiel</span><strong>Résidence Lagon</strong></span>
+                        </button>
+                    </li>
+                    <li class="portfolio-item is-tall" data-category="structure">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/chantier-fondations.webp"
+                                data-title="Fondations en radier" data-desc="Réception des armatures d'un radier général avant coulage.">
+                            <img src="assets/images/portfolio/chantier-fondations.webp" alt="Équipe sur un chantier de fondations" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Structure &amp; chantier</span><strong>Fondations en radier</strong></span>
+                        </button>
+                    </li>
+                    <li class="portfolio-item" data-category="interieur">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/sejour-minimal.webp"
+                                data-title="Séjour minimal" data-desc="Palette neutre, mobilier bas et bandeau vitré horizontal.">
+                            <img src="assets/images/portfolio/sejour-minimal.webp" alt="Séjour minimaliste aux tons neutres" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Intérieur</span><strong>Séjour minimal</strong></span>
+                        </button>
+                    </li>
+                    <li class="portfolio-item" data-category="residentiel">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/maison-bois.webp"
+                                data-title="Maison Bois &amp; Métal" data-desc="Façade en bardage bois et métal noir, patio intérieur.">
+                            <img src="assets/images/portfolio/maison-bois.webp" alt="Maison contemporaine en bois et métal noir" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Résidentiel</span><strong>Maison Bois &amp; Métal</strong></span>
+                        </button>
+                    </li>
+                    <li class="portfolio-item" data-category="urbain">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/residence-urbaine.webp"
+                                data-title="Résidence urbaine" data-desc="Immeuble de logements R+5, façade rythmée par les balcons.">
+                            <img src="assets/images/portfolio/residence-urbaine.webp" alt="Immeuble résidentiel moderne à façade sombre" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Urbain &amp; tertiaire</span><strong>Résidence urbaine</strong></span>
+                        </button>
+                    </li>
+                    <li class="portfolio-item is-wide" data-category="residentiel">
+                        <button class="portfolio-item__btn" type="button" data-full="assets/images/portfolio/villa-cubique.webp"
+                                data-title="Villa Cubique" data-desc="Jeu de volumes enduits et parement bois, jardin paysager.">
+                            <img src="assets/images/portfolio/villa-cubique.webp" alt="Villa cubique blanche et bois" loading="lazy" width="1400" height="933">
+                            <span class="portfolio-item__caption"><span>Résidentiel</span><strong>Villa Cubique</strong></span>
+                        </button>
+                    </li>
+                </ul>
+
+                <p class="portfolio-empty" id="portfolio-empty" hidden>Aucun projet dans cette catégorie pour le moment.</p>
+            </div>
+        </section>
+
+        <!-- ================= APPEL À L'ACTION ================= -->
+        <section class="section" style="padding-top:0" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta-band reveal">
+                    <span class="eyebrow">Votre projet</span>
+                    <h2 id="cta-title">Et si le prochain projet était <em class="accent">le vôtre</em> ?</h2>
+                    <a class="btn btn--primary" href="contact.php?type=custom_project">Demander un devis</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= LIGHTBOX (élément HTML5 <dialog>) ================= -->
+    <dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-title">
+        <figure class="lightbox__figure">
+            <img class="lightbox__img" id="lightbox-img" src="" alt="">
+            <figcaption class="lightbox__caption">
+                <h2 class="h3" id="lightbox-title"></h2>
+                <p id="lightbox-desc"></p>
+            </figcaption>
+        </figure>
+        <div class="lightbox__controls">
+            <button class="lightbox__btn" type="button" data-action="prev" aria-label="Projet précédent">←</button>
+            <button class="lightbox__btn" type="button" data-action="next" aria-label="Projet suivant">→</button>
+            <button class="lightbox__btn" type="button" data-action="close" aria-label="Fermer">✕</button>
+        </div>
+    </dialog>
+
+    <!-- ================= PIED DE PAGE ================= -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__grid">
+                <div>
+                    <a href="index.html" class="logo">
+                        <span class="logo__name">OUNIADON</span>
+                        <span class="logo__tag">Architecture &amp; Ingénierie</span>
+                    </a>
+                    <p class="lead" style="margin-top:1rem;font-size:.95rem">Architecture, structure et visualisation 3D. Lomé · En ligne partout dans le monde.</p>
+                </div>
+                <nav aria-label="Liens du pied de page">
+                    <h3>Navigation</h3>
+                    <ul role="list">
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="index.html#plans">Plans</a></li>
+                        <li><a href="index.html#formations">Formations</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h3>Contact</h3>
+                    <ul role="list">
+                        <li><a href="contact.php">Formulaire de contact</a></li>
+                        <li><a href="https://github.com/ouniadonds-byte" target="_blank" rel="noopener">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                <p>© <span data-year>2026</span> OUNIADON Hairoulah. Tous droits réservés.</p>
+                <p>Projet académique · ID 411030513</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
