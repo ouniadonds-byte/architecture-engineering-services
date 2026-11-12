@@ -5,38 +5,40 @@
  * Fichier : contact.php
  * Rôle    : Formulaire de demande (projet sur mesure, achat de plan,
  *           inscription à une formation). Validation stricte côté client
- *           (assets/js/form-validation.js) ; traitement serveur en Phase 4
- *           (api/submit-request.php).
+ *           (assets/js/form-validation.js) puis côté serveur
+ *           (api/submit-request.php -> src/ClientRequest.php).
  */
 declare(strict_types=1);
 
-/*
- * Catalogues affichés dans les listes déroulantes.
- * PHASE 3 : tableaux statiques, identiques aux données de database/seed.sql.
- * PHASE 4 : remplacés par une lecture en base (SELECT ... FROM plans / trainings)
- *           via la classe Database (PDO).
- */
-$plans = [
-    ['id' => 1, 'title' => 'Villa contemporaine 4 chambres', 'price' => 450.00],
-    ['id' => 2, 'title' => 'Duplex moderne avec terrasse',   'price' => 650.00],
-    ['id' => 3, 'title' => 'Immeuble R+3, 8 appartements',   'price' => 1200.00],
-];
+require __DIR__ . '/src/bootstrap.php';
 
-$trainings = [
-    ['id' => 1, 'title' => 'Archicad : de l\'esquisse au dossier d\'exécution', 'hours' => 30, 'price' => 150.00],
-    ['id' => 2, 'title' => 'Lumion : rendus et animations photoréalistes',     'hours' => 20, 'price' => 120.00],
-    ['id' => 3, 'title' => 'Revit Architecture : maîtriser le BIM',             'hours' => 35, 'price' => 170.00],
-    ['id' => 4, 'title' => 'Robot Structural Analysis : calcul de structures', 'hours' => 30, 'price' => 200.00],
-];
+/*
+ * Catalogues des listes déroulantes, lus en base via la classe Catalog (PDO).
+ * Si la base est injoignable, la page s'affiche quand même avec un message.
+ */
+$plans = [];
+$trainings = [];
+$catalogError = false;
+
+try {
+    $catalog   = new Catalog(Database::getConnection());
+    $plans     = $catalog->getPlans();
+    $trainings = $catalog->getTrainings();
+} catch (PDOException $e) {
+    error_log('[contact] ' . $e->getMessage());
+    $catalogError = true;
+}
+
+// Jeton anti-CSRF inséré dans un champ caché du formulaire
+$csrfToken = Csrf::token();
 
 /*
  * Présélection depuis l'URL (ex. contact.php?type=plan_purchase&plan=2).
  * Les valeurs de $_GET ne sont JAMAIS affichées telles quelles : on les
  * compare à une liste blanche (in_array strict) ou on les convertit en entier.
  */
-$allowedTypes = ['custom_project', 'plan_purchase', 'training_enrollment'];
 $type = $_GET['type'] ?? 'custom_project';
-if (!in_array($type, $allowedTypes, true)) {
+if (!in_array($type, ClientRequest::TYPES, true)) {
     $type = 'custom_project';
 }
 $selectedPlan     = filter_input(INPUT_GET, 'plan', FILTER_VALIDATE_INT) ?: 0;
@@ -136,6 +138,12 @@ $today = date('Y-m-d');
                      Les attributs HTML5 (required, pattern, min, max...) restent
                      présents : ils documentent les règles et servent de filet de sécurité. -->
                 <form class="form" id="request-form" action="api/submit-request.php" method="post" novalidate>
+                    <!-- Jeton anti-CSRF : vérifié par le serveur à chaque envoi -->
+                    <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
+
+                    <?php if ($catalogError): ?>
+                        <p class="form-status is-error" role="alert">Le catalogue est momentanément indisponible. Vous pouvez tout de même envoyer une demande de projet sur mesure.</p>
+                    <?php endif; ?>
 
                     <!-- ---------- 1. Type de demande ---------- -->
                     <fieldset>
@@ -252,8 +260,8 @@ $today = date('Y-m-d');
                                 <select id="plan_id" name="plan_id" required aria-describedby="plan_id-error">
                                     <option value="">Choisir un plan…</option>
                                     <?php foreach ($plans as $plan): ?>
-                                        <option value="<?= e($plan['id']) ?>" <?= $plan['id'] === $selectedPlan ? 'selected' : '' ?>>
-                                            <?= e($plan['title']) ?> — <?= e(usd($plan['price'])) ?>
+                                        <option value="<?= e($plan['id']) ?>" <?= (int) $plan['id'] === $selectedPlan ? 'selected' : '' ?>>
+                                            <?= e($plan['title']) ?> — <?= e(usd((float) $plan['price'])) ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
@@ -281,8 +289,8 @@ $today = date('Y-m-d');
                                 <select id="training_id" name="training_id" required aria-describedby="training_id-error">
                                     <option value="">Choisir une formation…</option>
                                     <?php foreach ($trainings as $training): ?>
-                                        <option value="<?= e($training['id']) ?>" <?= $training['id'] === $selectedTraining ? 'selected' : '' ?>>
-                                            <?= e($training['title']) ?> — <?= e($training['hours']) ?> h — <?= e(usd($training['price'])) ?>
+                                        <option value="<?= e($training['id']) ?>" <?= (int) $training['id'] === $selectedTraining ? 'selected' : '' ?>>
+                                            <?= e($training['title']) ?> — <?= e($training['duration_hours']) ?> h — <?= e(usd((float) $training['price'])) ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>

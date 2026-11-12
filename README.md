@@ -10,7 +10,7 @@
 > immersive portfolio, ready-to-build house plans, BIM software training, and a secure
 > client-request system.
 
-**Status:** 🚧 In progress — academic web development project (step-by-step build).
+**Status:** ✅ Functional — academic web development project (final report in progress).
 
 ## 🎯 Purpose
 
@@ -45,6 +45,19 @@ Highlights: named PK / FK / UNIQUE / CHECK constraints, `DECIMAL` for money, pri
 at purchase time, `ON DELETE RESTRICT` on catalog items, an overview view built with joins,
 and a least-privilege database user (`SELECT`, `INSERT`, `UPDATE` only).
 
+## 🔒 Security
+
+| Threat | Protection |
+|---|---|
+| SQL injection | PDO prepared statements with native (non-emulated) prepares |
+| XSS | `htmlspecialchars()` on every output, whitelist checks on URL parameters |
+| CSRF | Random session token (`random_bytes`) checked with `hash_equals()` |
+| Price tampering | Plan price read from the database, never trusted from the browser |
+| Spam | Honeypot field + per-session rate limit (HTTP 429) |
+| Partial writes | Client → request → details inserted in a single transaction |
+| Data leaks | Credentials outside Git, `.htaccess` deny on `src/`, `config/`, `database/`, errors logged not displayed |
+| Privilege abuse | Dedicated DB user limited to `SELECT`, `INSERT`, `UPDATE` |
+
 ## 📁 Project structure
 
 ```
@@ -63,14 +76,15 @@ and a least-privilege database user (`SELECT`, `INSERT`, `UPDATE` only).
 2. Clone this repository into `C:\xampp\htdocs\`.
 3. In phpMyAdmin, import `database/schema.sql`, then `database/seed.sql`,
    then `database/app_user.sql` (set your own password first).
-4. Open `http://localhost/<folder-name>/` in your browser.
+4. Copy `config/config.example.php` to `config/config.php` and enter the same password.
+5. Open `http://localhost/<folder-name>/` in your browser.
 
 ## 🗺️ Roadmap
 
 - [x] Phase 1 — Development environment
 - [x] Phase 2 — Database architecture
-- [ ] Phase 3 — Frontend (hero video, interactive portfolio, contact form)
-- [ ] Phase 4 — Backend (OOP PHP, secure inserts with PDO)
+- [x] Phase 3 — Frontend (hero video, interactive portfolio, contact form)
+- [x] Phase 4 — Backend (OOP PHP, secure inserts with PDO)
 - [ ] Phase 5 — Project report
 
 ## 👤 Author

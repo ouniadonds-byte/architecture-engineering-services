@@ -272,10 +272,7 @@ class FormValidator {
                 headers: { Accept: 'application/json' },
             });
 
-            if (response.status === 404) {
-                throw new Error('Le traitement serveur sera disponible en Phase 4 (api/submit-request.php).');
-            }
-
+            // Le serveur répond toujours en JSON : { success, message, errors? }
             const data = await response.json();
 
             if (response.ok && data.success) {
@@ -290,10 +287,9 @@ class FormValidator {
                 Object.entries(data.errors ?? {}).forEach(([name, message]) => this.showFieldState(name, message));
                 this.setStatus(data.message ?? "L'envoi a échoué. Veuillez vérifier le formulaire.", 'error');
             }
-        } catch (error) {
-            this.setStatus(error.message.includes('Phase 4')
-                ? error.message
-                : 'Impossible de joindre le serveur. Vérifiez votre connexion et réessayez.', 'error');
+        } catch {
+            // Réseau coupé ou réponse non JSON (serveur arrêté, erreur fatale PHP...)
+            this.setStatus('Impossible de joindre le serveur. Vérifiez votre connexion et réessayez.', 'error');
         } finally {
             this.submitBtn.disabled = false;
             this.submitBtn.textContent = 'Envoyer ma demande';
