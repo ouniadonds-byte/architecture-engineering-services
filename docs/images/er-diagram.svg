@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 790" font-family="Segoe UI, Arial, sans-serif">
+<rect width="1000" height="790" fill="#ffffff"/>
+<defs><marker id="many" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto"><path d="M0,0 L12,7 L0,14 M12,0 L12,14" fill="none" stroke="#1d1d1f" stroke-width="1.4"/></marker></defs>
+<path d="M270,60 L385,60" stroke="#1d1d1f" stroke-width="1.6" fill="none"/>
+<text x="280" y="54" font-size="13" font-weight="600" fill="#a8843f">1</text>
+<text x="368" y="54" font-size="13" font-weight="600" fill="#a8843f">N</text>
+<text x="300" y="80" font-size="11" fill="#5f6368">places</text>
+<path d="M500.0,205 L500.0,233 M155.0,233 L845.0,233" stroke="#1d1d1f" stroke-width="1.6" fill="none"/>
+<path d="M155.0,233 L155.0,300" stroke="#1d1d1f" stroke-width="1.6" fill="none"/>
+<text x="163.0" y="271.5" font-size="13" font-weight="600" fill="#a8843f">1 : 1</text>
+<path d="M500.0,233 L500.0,300" stroke="#1d1d1f" stroke-width="1.6" fill="none"/>
+<text x="508.0" y="271.5" font-size="13" font-weight="600" fill="#a8843f">1 : 1</text>
+<path d="M845.0,233 L845.0,300" stroke="#1d1d1f" stroke-width="1.6" fill="none"/>
+<text x="853.0" y="271.5" font-size="13" font-weight="600" fill="#a8843f">1 : 1</text>
+<path d="M500.0,464 L500.0,590" stroke="#1d1d1f" stroke-width="1.6" fill="none"/>
+<text x="508.0" y="482" font-size="13" font-weight="600" fill="#a8843f">N</text>
+<text x="508.0" y="582" font-size="13" font-weight="600" fill="#a8843f">1</text>
+<path d="M845.0,443 L845.0,590" stroke="#1d1d1f" stroke-width="1.6" fill="none"/>
+<text x="853.0" y="461" font-size="13" font-weight="600" fill="#a8843f">N</text>
+<text x="853.0" y="582" font-size="13" font-weight="600" fill="#a8843f">1</text>
+<text x="845.0" y="204" font-size="11" fill="#5f6368" text-anchor="middle">independent (back-office accounts)</text>
+<rect x="40" y="20" width="230" height="164" rx="8" fill="#ffffff" stroke="#c9a45c" stroke-width="1.6"/>
+<path d="M40,50 L40,28 Q40,20 48,20 L262,20 Q270,20 270,28 L270,50 Z" fill="#1d1d1f"/>
+<text x="155.0" y="40" font-size="13.5" font-weight="700" fill="#e4c88a" text-anchor="middle">clients</text>
+<text x="52" y="67" font-size="10.5" font-weight="700" fill="#a8843f">PK</text>
+<text x="80" y="67" font-size="12" fill="#1d1d1f">id</text>
+<text x="80" y="88" font-size="12" fill="#1d1d1f">full_name</text>
+<text x="52" y="109" font-size="10.5" font-weight="700" fill="#a8843f">UQ</text>
+<text x="80" y="109" font-size="12" fill="#1d1d1f">email</text>
+<text x="80" y="130" font-size="12" fill="#1d1d1f">phone</text>
+<text x="80" y="151" font-size="12" fill="#1d1d1f">country, city</text>
+<text x="80" y="172" font-size="12" fill="#1d1d1f">created_at, updated_at</text>
+<rect x="385" y="20" width="230" height="185" rx="8" fill="#ffffff" stroke="#c9a45c" stroke-width="1.6"/>
+<path d="M385,50 L385,28 Q385,20 393,20 L607,20 Q615,20 615,28 L615,50 Z" fill="#1d1d1f"/>
+<text x="500.0" y="40" font-size="13.5" font-weight="700" fill="#e4c88a" text-anchor="middle">requests</text>
+<text x="397" y="67" font-size="10.5" font-weight="700" fill="#a8843f">PK</text>
+<text x="425" y="67" font-size="12" fill="#1d1d1f">id</text>
+<text x="397" y="88" font-size="10.5" font-weight="700" fill="#a8843f">FK</text>
+<text x="425" y="88" font-size="12" fill="#1d1d1f">client_id</text>
+<text x="425" y="109" font-size="12" fill="#1d1d1f">request_type  ENUM</text>
+<text x="425" y="130" font-size="12" fill="#1d1d1f">message</text>
+<text x="425" y="151" font-size="12" fill="#1d1d1f">status  ENUM</text>
+<text x="425" y="172" font-size="12" fill="#1d1d1f">consent_given  CHECK</text>
+<text x="425" y="193" font-size="12" fill="#1d1d1f">ip_address</text>
+<rect x="730" y="20" width="230" height="164" rx="8" fill="#ffffff" stroke="#c9a45c" stroke-width="1.6"/>
+<path d="M730,50 L730,28 Q730,20 738,20 L952,20 Q960,20 960,28 L960,50 Z" fill="#1d1d1f"/>
+<text x="845.0" y="40" font-size="13.5" font-weight="700" fill="#e4c88a" text-anchor="middle">admins</text>
+<text x="742" y="67" font-size="10.5" font-weight="700" fill="#a8843f">PK</text>
+<text x="770" y="67" font-size="12" fill="#1d1d1f">id</text>
+<text x="742" y="88" font-size="10.5" font-weight="700" fill="#a8843f">UQ</text>
+<text x="770" y="88" font-size="12" fill="#1d1d1f">username</text>
+<text x="770" y="109" font-size="12" fill="#1d1d1f">password_hash  (bcrypt)</text>
+<text x="770" y="130" font-size="12" fill="#1d1d1f">failed_attempts</text>
+<text x="770" y="151" font-size="12" fill="#1d1d1f">locked_until</text>
+<text x="770" y="172" font-size="12" fill="#1d1d1f">last_login_at</text>
+<rect x="40" y="300" width="230" height="185" rx="8" fill="#ffffff" stroke="#c9a45c" stroke-width="1.6"/>
+<path d="M40,330 L40,308 Q40,300 48,300 L262,300 Q270,300 270,308 L270,330 Z" fill="#1d1d1f"/>
+<text x="155.0" y="320" font-size="13.5" font-weight="700" fill="#e4c88a" text-anchor="middle">custom_project_details</text>
+<text x="52" y="347" font-size="10.5" font-weight="700" fill="#a8843f">PK FK</text>
+<text x="104" y="347" font-size="12" fill="#1d1d1f">request_id</text>
+<text x="80" y="368" font-size="12" fill="#1d1d1f">project_type  ENUM</text>
+<text x="80" y="389" font-size="12" fill="#1d1d1f">building_use  ENUM</text>
+<text x="80" y="410" font-size="12" fill="#1d1d1f">location</text>
+<text x="80" y="431" font-size="12" fill="#1d1d1f">land_area_m2  DECIMAL</text>
+<text x="80" y="452" font-size="12" fill="#1d1d1f">budget_min / budget_max</text>
+<text x="80" y="473" font-size="12" fill="#1d1d1f">desired_deadline  DATE</text>
+<rect x="385" y="300" width="230" height="164" rx="8" fill="#ffffff" stroke="#c9a45c" stroke-width="1.6"/>
+<path d="M385,330 L385,308 Q385,300 393,300 L607,300 Q615,300 615,308 L615,330 Z" fill="#1d1d1f"/>
+<text x="500.0" y="320" font-size="13.5" font-weight="700" fill="#e4c88a" text-anchor="middle">plan_purchase_details</text>
+<text x="397" y="347" font-size="10.5" font-weight="700" fill="#a8843f">PK FK</text>
+<text x="449" y="347" font-size="12" fill="#1d1d1f">request_id</text>
+<text x="397" y="368" font-size="10.5" font-weight="700" fill="#a8843f">FK</text>
+<text x="425" y="368" font-size="12" fill="#1d1d1f">plan_id</text>
+<text x="425" y="389" font-size="12" fill="#1d1d1f">license_type  ENUM</text>
+<text x="425" y="410" font-size="12" fill="#1d1d1f">needs_customization</text>
+<text x="425" y="431" font-size="12" fill="#1d1d1f">unit_price  DECIMAL</text>
+<text x="425" y="452" font-size="12" fill="#1d1d1f">currency</text>
+<rect x="730" y="300" width="230" height="143" rx="8" fill="#ffffff" stroke="#c9a45c" stroke-width="1.6"/>
+<path d="M730,330 L730,308 Q730,300 738,300 L952,300 Q960,300 960,308 L960,330 Z" fill="#1d1d1f"/>
+<text x="845.0" y="320" font-size="13.5" font-weight="700" fill="#e4c88a" text-anchor="middle">training_enrollment_details</text>
+<text x="742" y="347" font-size="10.5" font-weight="700" fill="#a8843f">PK FK</text>
+<text x="794" y="347" font-size="12" fill="#1d1d1f">request_id</text>
+<text x="742" y="368" font-size="10.5" font-weight="700" fill="#a8843f">FK</text>
+<text x="770" y="368" font-size="12" fill="#1d1d1f">training_id</text>
+<text x="770" y="389" font-size="12" fill="#1d1d1f">delivery_mode  ENUM</text>
+<text x="770" y="410" font-size="12" fill="#1d1d1f">current_level  ENUM</text>
+<text x="770" y="431" font-size="12" fill="#1d1d1f">preferred_start  DATE</text>
+<rect x="385" y="590" width="230" height="143" rx="8" fill="#ffffff" stroke="#c9a45c" stroke-width="1.6"/>
+<path d="M385,620 L385,598 Q385,590 393,590 L607,590 Q615,590 615,598 L615,620 Z" fill="#1d1d1f"/>
+<text x="500.0" y="610" font-size="13.5" font-weight="700" fill="#e4c88a" text-anchor="middle">plans</text>
+<text x="397" y="637" font-size="10.5" font-weight="700" fill="#a8843f">PK</text>
+<text x="425" y="637" font-size="12" fill="#1d1d1f">id</text>
+<text x="397" y="658" font-size="10.5" font-weight="700" fill="#a8843f">UQ</text>
+<text x="425" y="658" font-size="12" fill="#1d1d1f">reference</text>
+<text x="425" y="679" font-size="12" fill="#1d1d1f">title, category</text>
+<text x="425" y="700" font-size="12" fill="#1d1d1f">built_area_m2</text>
+<text x="425" y="721" font-size="12" fill="#1d1d1f">price  DECIMAL</text>
+<rect x="730" y="590" width="230" height="143" rx="8" fill="#ffffff" stroke="#c9a45c" stroke-width="1.6"/>
+<path d="M730,620 L730,598 Q730,590 738,590 L952,590 Q960,590 960,598 L960,620 Z" fill="#1d1d1f"/>
+<text x="845.0" y="610" font-size="13.5" font-weight="700" fill="#e4c88a" text-anchor="middle">trainings</text>
+<text x="742" y="637" font-size="10.5" font-weight="700" fill="#a8843f">PK</text>
+<text x="770" y="637" font-size="12" fill="#1d1d1f">id</text>
+<text x="742" y="658" font-size="10.5" font-weight="700" fill="#a8843f">UQ</text>
+<text x="770" y="658" font-size="12" fill="#1d1d1f">code</text>
+<text x="770" y="679" font-size="12" fill="#1d1d1f">title, software</text>
+<text x="770" y="700" font-size="12" fill="#1d1d1f">duration_hours</text>
+<text x="770" y="721" font-size="12" fill="#1d1d1f">price  DECIMAL</text>
+</svg>

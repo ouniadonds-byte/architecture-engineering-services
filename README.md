@@ -10,7 +10,11 @@
 > immersive portfolio, ready-to-build house plans, BIM software training, and a secure
 > client-request system.
 
-**Status:** ✅ Functional — academic web development project (final report in progress).
+**Status:** ✅ Complete — academic project for *Web Applications Development* (تطوير تطبيقات الويب, course 2561).
+
+📄 **Full project report:** [docs/PROJECT_REPORT.pdf](docs/PROJECT_REPORT.pdf)
+
+![Home page](docs/images/01-home.png)
 
 ## 🎯 Purpose
 
@@ -102,7 +106,7 @@ php database/create_admin.php <username> <password>
 - [x] Phase 2 — Database architecture
 - [x] Phase 3 — Frontend (hero video, interactive portfolio, contact form)
 - [x] Phase 4 — Backend (OOP PHP, secure inserts with PDO)
-- [ ] Phase 5 — Project report
+- [x] Phase 5 — Project report ([Markdown](docs/PROJECT_REPORT.md) · [PDF](docs/PROJECT_REPORT.pdf))
 
 ## 👤 Author
 
