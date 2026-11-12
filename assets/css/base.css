@@ -127,6 +127,15 @@ h3 {
     letter-spacing: -0.01em;
 }
 
+/* Chiffres alignés (« 1 » et non « I ») pour la police de titrage */
+h1, h2, h3,
+.stat__value,
+.stat-tile__value,
+.price {
+    font-variant-numeric: lining-nums;
+    font-feature-settings: "lnum" 1;
+}
+
 h1 { font-size: var(--fs-h1); }
 h2 { font-size: var(--fs-h2); }
 h3 { font-size: var(--fs-h3); }

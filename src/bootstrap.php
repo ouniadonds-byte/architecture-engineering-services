@@ -24,7 +24,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', $config['app']['debug'] ? '1' : '0');
 ini_set('log_errors', '1');
 
-// 3. Autoload : « new Database » charge automatiquement src/Database.php
+// 3. Fonctions d'affichage partagées (e(), usd(), frDate())
+require_once __DIR__ . '/helpers.php';
+
+// Autoload : « new Database » charge automatiquement src/Database.php
 spl_autoload_register(static function (string $class): void {
     $file = __DIR__ . '/' . $class . '.php';
     if (is_file($file)) {

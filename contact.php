@@ -44,18 +44,6 @@ if (!in_array($type, ClientRequest::TYPES, true)) {
 $selectedPlan     = filter_input(INPUT_GET, 'plan', FILTER_VALIDATE_INT) ?: 0;
 $selectedTraining = filter_input(INPUT_GET, 'training', FILTER_VALIDATE_INT) ?: 0;
 
-/** Échappe une valeur pour l'affichage HTML (protection XSS). */
-function e(string|int|float $value): string
-{
-    return htmlspecialchars((string) $value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-}
-
-/** Formate un prix en dollars : 1200 -> "$1 200". */
-function usd(float $amount): string
-{
-    return '$' . number_format($amount, 0, ',', ' ');
-}
-
 $today = date('Y-m-d');
 ?>
 <!DOCTYPE html>

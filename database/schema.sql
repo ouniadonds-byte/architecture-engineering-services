@@ -189,7 +189,25 @@ CREATE TABLE training_enrollment_details (
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
--- 6. Vue de synthèse (jointures) : toutes les demandes sur une ligne
+-- 6. Administrateurs (espace privé /admin) — compte créé avec
+--    database/create_admin.php ; mot de passe stocké en empreinte bcrypt
+-- ---------------------------------------------------------------------
+CREATE TABLE admins (
+    id               SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    username         VARCHAR(50)       NOT NULL,
+    password_hash    VARCHAR(255)      NOT NULL,
+    failed_attempts  TINYINT UNSIGNED  NOT NULL DEFAULT 0,
+    locked_until     DATETIME          NULL,
+    last_login_at    DATETIME          NULL,
+    created_at       TIMESTAMP         NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT pk_admins          PRIMARY KEY (id),
+    CONSTRAINT uq_admins_username UNIQUE (username),
+    CONSTRAINT ck_admins_username CHECK (CHAR_LENGTH(username) >= 3)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- 7. Vue de synthèse (jointures) : toutes les demandes sur une ligne
 -- ---------------------------------------------------------------------
 CREATE VIEW v_requests_overview AS
 SELECT

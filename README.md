@@ -45,6 +45,18 @@ Highlights: named PK / FK / UNIQUE / CHECK constraints, `DECIMAL` for money, pri
 at purchase time, `ON DELETE RESTRICT` on catalog items, an overview view built with joins,
 and a least-privilege database user (`SELECT`, `INSERT`, `UPDATE` only).
 
+## 🛠️ Admin area (`/admin`)
+
+Password-protected back office to manage incoming requests:
+dashboard with key figures (`COUNT`/`SUM` aggregates), filters by type and status,
+search by name or e-mail, detailed request view (joins), and status updates (`UPDATE`).
+
+Create the admin account from the command line:
+
+```bash
+php database/create_admin.php <username> <password>
+```
+
 ## 🔒 Security
 
 | Threat | Protection |
@@ -57,14 +69,19 @@ and a least-privilege database user (`SELECT`, `INSERT`, `UPDATE` only).
 | Partial writes | Client → request → details inserted in a single transaction |
 | Data leaks | Credentials outside Git, `.htaccess` deny on `src/`, `config/`, `database/`, errors logged not displayed |
 | Privilege abuse | Dedicated DB user limited to `SELECT`, `INSERT`, `UPDATE` |
+| Password theft | Admin passwords stored as bcrypt hashes (`password_hash` / `password_verify`) |
+| Brute force | Account locked for 15 min after 5 failed logins |
+| Session hijacking | `session_regenerate_id()` on login, HttpOnly + SameSite cookies, 30-min idle timeout |
+| Clickjacking | `X-Frame-Options: DENY` on admin pages |
 
 ## 📁 Project structure
 
 ```
 ├── index.html, portfolio.html, contact.php
 ├── assets/      css/, js/, images/, videos/
+├── admin/       back office (login, dashboard, request detail)
 ├── api/         form handlers (PHP)
-├── src/         PHP classes (Database, ClientRequest)   – web access denied
+├── src/         PHP classes (Database, ClientRequest, Auth, …) – web access denied
 ├── config/      database credentials (not versioned)    – web access denied
 ├── database/    schema.sql, seed.sql, app_user.sql      – web access denied
 └── docs/        project report
